@@ -1,0 +1,26 @@
+    <h2>Hallo <%= nama %> </h2> 
+
+    <h5>Daftar Mahasiswa</h5>
+
+    <table class="table">
+        <thead class="table-light">
+          <tr>
+              <td>No</td>
+              <td>Nama</td>
+              <td>Email</td>
+          </tr>
+        </thead>
+        <tbody>      
+        <% if (mahasiswa.length < 1) { %>
+            <p>Data Mahasiswa Masih Kosong</p>
+            <% }else { %>
+                <% mahasiswa.forEach((mhs, i) => { i++ %>       
+                <tr>
+                    <td><%= i++ %> </td>
+                    <td><%= mhs.nama %> </td>
+                    <td><%= mhs.email %> </td>
+                </tr>
+            <% }) %>
+        <% } %> 
+        </tbody>
+      </table>

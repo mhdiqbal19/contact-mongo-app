@@ -1,0 +1,52 @@
+<div class="container mt-3">
+    <div class="row">
+        <div class="col-md-8">
+            <h4>Daftar Contact</h4>
+
+          <a href="/contact/add" class="btn btn-primary badge mb-2"><i class="bi bi-plus"></i> Add Data</a>
+
+          <% if (msg.length !== 0) { %>
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+              <%= msg %> 
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+          <% } %>
+
+            <table class="table">
+                <thead class="table-light">
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Nama</th>
+                    <th scope="col">No Hp</th>
+                    <th scope="col">Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                <% if (contacts.length === 0) { %>
+                    <div class="alert alert-danger fw-bold" role="alert">
+                        Data contact masih kosong.
+                    </div>
+                <% } %>
+
+                  <% contacts.forEach((contact, i) => { i++ %>
+                    <tr>
+                      <th scope="row"><%= i++ %> </th>
+                      <td><%= contact.nama %> </td>
+                      <td><%= contact.noHp %> </td>
+                      <td>
+                          <a href="/contact/<%= contact.nama %> " class="btn btn-success badge rounded-pill"><i class="bi bi-info-circle"></i> Detail</a>
+
+                          <form action="/contact?_method=DELETE" method="POST" class="d-inline">
+                            <input type="hidden" name="nama" value="<%= contact.nama %>">
+                          <button type="submit" class="btn btn-danger badge rounded-pill" onclick="return confirm('Yakin mau hapus?')"><i class="bi bi-trash3-fill"></i> Delete</button>
+                          </form>
+
+                          <a href="/contact/edit/<%= contact.nama %> " class="btn btn-info badge rounded-pill"><i class="bi bi-pencil-fill"></i> Edit</a>
+                      </td>
+                    </tr>               
+                  <% }) %>
+                </tbody>
+              </table>
+        </div>
+    </div>
+</div>
